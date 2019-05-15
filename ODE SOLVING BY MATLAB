@@ -72,5 +72,15 @@ Note:How to use Matlab solve the ODE problem.
   Similar to RK, usually we use forth-order Adams-Bashforth formula.
   Pk = a0 + a1 * t + a2 * t^2 + ... + ak * t^k;
   To solve a0, a1, ..., ak, we need k points. Pk(t) = f(t,y).
+  __This is called Adams-Bashforth formula. 
+    The forth-order Adams-Bashforth Formula, yn+1 = yn + h / 24 * (55 * fn - 59 * fn-1 + 37 * fn-2 - 9 * fn-3).
+    
+    $$ Adams-Moulton Formula $$
+    This is for calculating the "non-calsual" case - future case, yn+1.
+    Qk = b0 + b1 * t + b2 * t^2 + ... + bk * t^k; %The coefficients are determined by (tn,yn), (tn+1,yn+1), (tn-1,yn-1)...
+    Notes: 1.the first-order Adams-Moulton formula is just the backward Euler Formula.
+           2.the implicit coefficient can only have one. Or else it will be non-casual.
+           3.the forth-order Adams-Moulton Formula, yn+1 = yn + h / 24 * (9 * fn+1 + 19 * fn - 5 * fn-1 + fn-2).
+  
         
         
