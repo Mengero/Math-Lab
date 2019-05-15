@@ -44,7 +44,9 @@ Note:How to use Matlab solve the ODE problem.
  -----------------------------------------------------------------------
  #The Runge-Kutta Method#
    The MOST CLASSICAL one, is called "forth-order four-stage Runge-Kutta Method". Local truncation error is h5.
-   Formula: yn+1 = yn + h * (kn1 + 2 * kn2 + 2 * kn3 + kn4) / 6;
+   Formula: yn+1 = yn + h * (kn1 + 2 * kn2 + 2 * kn3 + kn4) / 6; 
+              $$ "h * (kn1 + 2 * kn2 + 2 * kn3 + kn4) / 6" can be interpreted as average slope.$$
+            kn1 = f(tn,yn); kn2 = f(tn + h/2, yn + h * kn1 / 2); kn3 = f(tn + h/2, yn + h * kn2 / 2); kn4 = f(tn + h, yn + h * kn3);
    
         
         
