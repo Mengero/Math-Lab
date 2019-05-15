@@ -1,0 +1,17 @@
+Note:How to use Matlab solve the ODE problem.
+*****The function is y' = 1 - t + 4y, h is the step length*****
+
+
+
+#Improved Euler Method#
+  function D1=f(t,y)
+  t = 0;y = 1;
+  h = 0.025;n = 2/h;
+  for j=1:n
+      fn = 1-t+4*y;
+      fnh = 1-(t+h)+4*(y+h*fn);
+      y = y+h/2*(fn+fnh);
+      t = t+h;
+      t
+      y
+  end
