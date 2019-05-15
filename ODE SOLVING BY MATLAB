@@ -1,7 +1,8 @@
 Note:How to use Matlab solve the ODE problem.
-*****The ODE initial problem is y' = 1 - t + 4y,y(0) = 1, h is the step length*****
+*****The ODE initial problem is y' = 1 - t + 4y,y(0) = 1, h is the step length, calculated from 0 to 2.*****
 -------------------------------------------------------------------------
 #Improved Euler Method#(Henu Formula)
+  --->
   function D1=f(t,y)
   t = 0;y = 1;
   h = 0.025;n = 2/h;
@@ -18,6 +19,7 @@ Note:How to use Matlab solve the ODE problem.
       Henu) is larger than e, decrease h. Else, it is okay. 
 ----------------------------------------------------------
 #The Euler Method# (too simple, thus I just write briefly)
+  --->
   function D1=f(t,y)
   t = 0;y = 1;
   h = 0.025;n = 2/h;
@@ -30,6 +32,7 @@ Note:How to use Matlab solve the ODE problem.
   end
   
     $$Backward Euler Formula$$ (Simply saying, calculate from yn+1 rather than yn)
+        --->
         function D1=f(t,y)
         t = 0;y = 1;
         h = 0.025;n = 2/h;
@@ -47,7 +50,27 @@ Note:How to use Matlab solve the ODE problem.
    Formula: yn+1 = yn + h * (kn1 + 2 * kn2 + 2 * kn3 + kn4) / 6; 
               $$ "h * (kn1 + 2 * kn2 + 2 * kn3 + kn4) / 6" can be interpreted as average slope.$$
             kn1 = f(tn,yn); kn2 = f(tn + h/2, yn + h * kn1 / 2); kn3 = f(tn + h/2, yn + h * kn2 / 2); kn4 = f(tn + h, yn + h * kn3);
-   
-        
+   --->
+   function D1 = f(t,y)
+   t = 0; y = 1;
+   h = 0.025; n = 2 / h;
+   for j = 1:n
+     k1 = 1 - t + 4 * y;
+     k2 = 1 - (t + h / 2) + 4 * (y + h * k1 / 2);
+     k3 = 1 - (t + h / 2) + 4 * (y + h * k2 / 2);
+     k4 = 1 - (t + h) + 4 * (y + h * k3);
+     y = y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+     t = t + h;
+     t
+     y
+   end
+-------------------------------------------------------------------------
+#Adams Methods#
+  yn+1 - yn = int(y',t,tn,tn+1)
+  However, the integration is not easy to solve. Thus, we choose Power Series to represent the y'. y' is represented by a polynomial Pk
+  of degree k.
+  Similar to RK, usually we use forth-order Adams-Bashforth formula.
+  Pk = a0 + a1 * t + a2 * t^2 + ... + ak * t^k;
+  To solve a0, a1, ..., ak, we need k points. Pk(t) = f(t,y).
         
         
