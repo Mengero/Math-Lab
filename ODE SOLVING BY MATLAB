@@ -1,9 +1,7 @@
 Note:How to use Matlab solve the ODE problem.
-*****The function is y' = 1 - t + 4y, h is the step length*****
-
-
-
-#Improved Euler Method#
+*****The ODE initial problem is y' = 1 - t + 4y,y(0) = 1, h is the step length*****
+-------------------------------------------------------------------------
+#Improved Euler Method#(Henu Formula)
   function D1=f(t,y)
   t = 0;y = 1;
   h = 0.025;n = 2/h;
@@ -15,3 +13,39 @@ Note:How to use Matlab solve the ODE problem.
       t
       y
   end
+    $$Variation of Step Size$$
+      Set an error tolerance e. Using Euler Method and Henu to calculate yn. If yn+1's estimated error(yn+1 from Euler minus yn+1 from 
+      Henu) is larger than e, decrease h. Else, it is okay. 
+----------------------------------------------------------
+#The Euler Method# (too simple, thus I just write briefly)
+  function D1=f(t,y)
+  t = 0;y = 1;
+  h = 0.025;n = 2/h;
+  for j=1:n
+      fn = 1-t+4*y;
+      y = y+h*fn;
+      t = t+h;
+      t
+      y
+  end
+  
+    $$Backward Euler Formula$$ (Simply saying, calculate from yn+1 rather than yn)
+        function D1=f(t,y)
+        t = 0;y = 1;
+        h = 0.025;n = 2/h;
+        for j=1:n
+          fn = 1-t+4*y;
+          fn1 = 1-(t+h)+4*(y+h*fn);
+          y = y+h*fn1;
+          t = t+h;
+          t
+          y
+        end
+ -----------------------------------------------------------------------
+ #The Runge-Kutta Method#
+   The MOST CLASSICAL one, is called "forth-order four-stage Runge-Kutta Method". Local truncation error is h5.
+   Formula: yn+1 = yn + h * (kn1 + 2 * kn2 + 2 * kn3 + kn4) / 6;
+   
+        
+        
+        
