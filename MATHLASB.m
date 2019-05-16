@@ -14,12 +14,14 @@ steps=(xspan(2)-xspan(1))/h;
 %% Define f(x,y) 
 %%
 f= @(x,y)x*(y-x);
+--------------------------------------------------------------------------------------------------------------------------
 %% Exact Solution
 %%
-[Xe,Yexact]=ode45(f,xspan,y0);%%Use the ode45 funtion to solve the ODE initial value problem.
-Xe=Xe(1:4:end);%%Xe is the number of t. Take one after 4 steps.
-Yexact=Yexact(1:4:end);%%Take one after 4 steps until the end.
-Exact_Sol=vpa([Xe Yexact],5)%%Change all the numbers into decimals with 5 significant numbers.
+[Xe,Yexact]=ode45(f,xspan,y0);      %%Use the ode45 funtion to solve the ODE initial value problem.
+Xe=Xe(1:4:end);     %%Xe is the number of t. Take one after 4 steps.
+Yexact=Yexact(1:4:end);     %%Take one after 4 steps until the end.
+Exact_Sol=vpa([Xe Yexact],5)        %%Change all the numbers into decimals with 5 significant numbers.
+--------------------------------------------------------------------------------------------------------------------------
 %% Euler's Method
 %%
 for j=2:steps+1
@@ -32,6 +34,7 @@ end
 euler=vpa([x y],5)
 % Mean Square Error
 mse = vpa(norm(Yexact-y,2),5)
+---------------------------------------------------------------------------------------------------------------------------
 %% Heun's Method
 %%
 for j=2:steps+1
@@ -46,6 +49,7 @@ end
 heuns=vpa([x y],5)
 % Mean Square Error
 mse = vpa(norm(Yexact-y,2),5)
+----------------------------------------------------------------------------------------------------------------------------
 %% RK 4th order method
 %%
 for j=2:steps+1
@@ -64,6 +68,7 @@ end
 rk4=vpa([x y],5)
 % Mean Square Error
 mse = vpa(norm(Yexact-y,2),5)
+-----------------------------------------------------------------------------------------------------------------------------
 %% Adam-Bashworth predictor
 %%
 for k=5:steps+1
@@ -76,6 +81,7 @@ p=y;
 Adam_Bashworth=vpa([x p],5)
 % Mean Square Error
 mse = vpa(norm(Yexact-y,2),5)
+-----------------------------------------------------------------------------------------------------------------------------
 %% Adam-Moulton corrector
 %%
 for k=5:steps+1
