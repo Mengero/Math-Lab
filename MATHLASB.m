@@ -33,7 +33,7 @@ for j=2:steps+1
 end
 euler=vpa([x y],5)
 % Mean Square Error
-mse = vpa(norm(Yexact-y,2),5)
+mse = vpa(norm(Yexact-y,2),5)       %%norm(A,2) means find the largest singular value.
 ---------------------------------------------------------------------------------------------------------------------------
 %% Heun's Method
 %%
