@@ -3,25 +3,23 @@
 %%
 syms x y;
 % Range of x
-xspan=[2,3];
+xspan=[0,0.5];
 % Step size
-h=0.1;
+h=0.05;
 % Initial values
-y0=3; x0=2;
+y0=1; x0=0;
 y(1)=y0;x(1)=x0;
 % No. of steps
 steps=(xspan(2)-xspan(1))/h;
 %% Define f(x,y) 
 %%
-f= @(x,y)x*(y-x);
---------------------------------------------------------------------------------------------------------------------------
+f= @(x,y)x^2+y^3;
 %% Exact Solution
 %%
-[Xe,Yexact]=ode45(f,xspan,y0);      %%Use the ode45 funtion to solve the ODE initial value problem.
-Xe=Xe(1:4:end);     %%Xe is the number of t. Take one after 4 steps.
-Yexact=Yexact(1:4:end);     %%Take one after 4 steps until the end.
-Exact_Sol=vpa([Xe Yexact],5)        %%Change all the numbers into decimals with 5 significant numbers.
---------------------------------------------------------------------------------------------------------------------------
+[Xe,Yexact]=ode45(f,xspan,y0);%%Use the ode45 funtion to solve the ODE initial value problem.
+Xe=Xe(1:4:end);%%Xe is the number of t. Take one after 4 steps.
+Yexact=Yexact(1:4:end);%%Take one after 4 steps until the end.
+Exact_Sol=vpa([Xe Yexact],5)%%Change all the numbers into decimals with 5 significant numbers.
 %% Euler's Method
 %%
 for j=2:steps+1
@@ -32,14 +30,10 @@ for j=2:steps+1
     
 end
 euler=vpa([x y],5)
-% Mean Square Error
-mse = vpa(norm(Yexact-y,2),5)       %%norm(A,2) means find the largest singular value. Same as norm(A). 
-                                    %%More detail: http://matlab.izmiran.ru/help/techdoc/ref/norm.html
----------------------------------------------------------------------------------------------------------------------------
 %% Heun's Method
 %%
 for j=2:steps+1
-    x(j,1)=x(j-1)+h;
+    x(j,1)=x(j-1,1)+h;
     
     k1(j-1,1)=h*f( x(j-1), y(j-1) );
     
@@ -48,9 +42,6 @@ for j=2:steps+1
     y(j,1)=y(j-1)+0.5*(k1(j-1)+k2(j-1));
 end
 heuns=vpa([x y],5)
-% Mean Square Error
-mse = vpa(norm(Yexact-y,2),5)
-----------------------------------------------------------------------------------------------------------------------------
 %% RK 4th order method
 %%
 for j=2:steps+1
@@ -67,9 +58,6 @@ for j=2:steps+1
     y(j,1)=y(j-1)+(1/6)*(k1(j-1)+2*k2(j-1)+2*k3(j-1)+k4(j-1));
 end
 rk4=vpa([x y],5)
-% Mean Square Error
-mse = vpa(norm(Yexact-y,2),5)
------------------------------------------------------------------------------------------------------------------------------
 %% Adam-Bashworth predictor
 %%
 for k=5:steps+1
@@ -80,9 +68,6 @@ y(k,1)=y(k-1) +(h/24)*( -9*f(x(k-4),y(k-4)) +37*f(x(k-3),y(k-3))...
 end
 p=y;
 Adam_Bashworth=vpa([x p],5)
-% Mean Square Error
-mse = vpa(norm(Yexact-y,2),5)
------------------------------------------------------------------------------------------------------------------------------
 %% Adam-Moulton corrector
 %%
 for k=5:steps+1
@@ -92,7 +77,5 @@ y(k,1)=y(k-1) +(h/24)*( f(x(k-3),y(k-3)) -5*f(x(k-2),y(k-2))...
                         +19*f(x(k-1),y(k-1)) +9*f(x(k),p(k)));
 end
 Adam_Moulton=vpa([x y],5)
-% Mean Square Error
-mse = vpa(norm(Yexact-y,2),5)
 %%
 % Created by- Bhartendu Thakur, Machine Learning & Computing
