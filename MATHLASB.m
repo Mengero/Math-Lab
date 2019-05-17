@@ -21,7 +21,8 @@ Yexact=Yexact(1:4:end);%%Take one after 4 steps until the end.
 Exact_Sol=vpa([Xe Yexact],5)%%Change all the numbers into decimals with 5 significant numbers.
 %% Euler's Method
 %%
-for j=2:steps+1
+for j=2:steps+1%%   When using the Adam method, we need four initial value. We can use Euler or Heun to calculate. Notice that "steps+1"
+               %%   should be replaced by 4.
     
     x(j,1)=x(j-1,1)+h;
     
