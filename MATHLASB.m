@@ -12,7 +12,7 @@ y = zeros(steps,1);
 y(1)=1;x(1)=x0;
 %% Define f(x,y) 
 %%
-f= @(x,y)x^2+y^3;
+f= @(x,y)x.^2+y.^3;
 %% Exact Solution
 %%
 [Xe,Yexact]=ode45(f,xspan,y0);%%Use the ode45 funtion to solve the ODE initial value problem.
