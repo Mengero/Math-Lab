@@ -2,15 +2,14 @@
 %% initialization
 %%
 syms x y;
-% Range of x
-xspan=[0,0.5];
 % Step size
-h=0.05;
+h=10^-4;
+steps = 0.5/h;
 % Initial values
-y0=1; x0=0;
-y(1)=y0;x(1)=x0;
-% No. of steps
-steps=(xspan(2)-xspan(1))/h;
+x = zeros(steps,1);     %%Set up x and y matrices.
+y = zeros(steps,1);
+% Define Initial Condition.
+y(1)=1;x(1)=x0;
 %% Define f(x,y) 
 %%
 f= @(x,y)x^2+y^3;
