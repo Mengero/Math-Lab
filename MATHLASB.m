@@ -4,6 +4,8 @@
 syms x y;
 % Step size
 h=10^-4;
+% Range of x
+xspan=[0,0.5];
 steps = 0.5/h;
 % Initial values
 x = zeros(steps,1);     %%Set up x and y matrices.
