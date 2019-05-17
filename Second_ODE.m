@@ -2,7 +2,7 @@
 %%         That is, suppose y1 = y, y2 = y' (This is the first equation). Then substitute them into the original equation to get another
 %%         equation. 
 
-
+%%  For further information: https://ww2.mathworks.cn/help/matlab/math/solve-nonstiff-odes.html
 
 %% Find & Plot Exact Solution
 %%
