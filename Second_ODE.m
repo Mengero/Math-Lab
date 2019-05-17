@@ -1,3 +1,9 @@
+%% ReadMe: To solve 2nd-ODE, we need to transfer the equation into euqation set consisting of two 1st-ODE.
+%%         That is, suppose y1 = y, y2 = y' (This is the first equation). Then substitute them into the original equation to get another
+%%         equation. 
+
+
+
 %% Find & Plot Exact Solution
 %%
 dydt = @(t,y)[y(2);y1*(1-y(1))*y(2)+y(1)];
