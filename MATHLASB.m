@@ -80,4 +80,3 @@ y(k,1)=y(k-1) +(h/24)*( f(x(k-3),y(k-3)) -5*f(x(k-2),y(k-2))...
 end
 Adam_Moulton=vpa([x y],5)
 %%
-% Created by- Bhartendu Thakur, Machine Learning & Computing
