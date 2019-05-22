@@ -115,7 +115,7 @@ y1(k,1)=y1(k-1) +(h/24)*( g(x(k-3),y1(k-3),y2(k-3)) -5*g(x(k-2),y1(k-2),y2(k-2))
 end
 Adam_Moulton=vpa([x y1 y2],5)
 plot(x,y1(:,1),'-o',x,y2(:,1),'-o')
-title('Solution of van der Pol Equation (\mu = 1) using ODE45');
+title('Solution of Lab Problem 2');
 xlabel('Time t');
 ylabel('Solution y');
 legend('y_1','y_2')
